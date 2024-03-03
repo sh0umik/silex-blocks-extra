@@ -12,9 +12,11 @@ export default {
   },
   external: ['@silexlabs/silex'],
   plugins: [
-    typescript(), // Supports typescript
+    typescript({
+      tsconfig: 'tsconfig.server.json',
+    }), // Supports typescript
     nodeResolve(), // Import modules from node_modules
-    eslint(), // Linting
+    //eslint(), // Linting
     commonjs(), // Convert CommonJS modules to ES6 when importing node_modules
   ],
 };

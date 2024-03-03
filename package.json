@@ -1,7 +1,7 @@
 {
-  "name": "@silexlabs/silex-plugin-starter",
-  "version": "0.0.0",
-  "description": "Silex plugin",
+  "name": "silex-blocks-extra",
+  "version": "0.0.1",
+  "description": "Extra Blocks For Silex V3 Editor",
   "main": "dist/server.js",
   "module": "dist/client.js",
   "files": [
@@ -12,7 +12,8 @@
   "scripts": {
     "start": "silex --client-config ./dist/client.js --server-config `pwd`/dist/server.js",
     "dev": "SILEX_CLIENT_CONFIG=./dist/client.js SILEX_SERVER_CONFIG=`pwd`/dist/server.js SILEX_PORT=3000 SILEX_DEBUG=true nodemon ../../node_modules/@silexlabs/silex",
-    "build": "$npm_execpath run build:client && $npm_execpath run build:server",
+    "build": "$npm_execpath run build:client",
+    "_build_bk": "$npm_execpath run build:client && $npm_execpath run build:server",
     "build:watch": "nodemon -e ts,js --watch src -x \"$npm_execpath run build\"",
     "build:client": "rollup -c rollup.client.config.mjs",
     "build:server": "rollup -c rollup.server.config.mjs",
@@ -35,6 +36,9 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@silexlabs/silex": "^3.0.0-alpha.122"
+    "@silexlabs/silex": "^3.0.0-alpha.147",
+    "grapesjs": "0.21.7",
+    "grapesjs-blocks-basic": "^1.0.2",
+    "grapesjs-blocks-flexbox": "^1.0.1"
   }
 }

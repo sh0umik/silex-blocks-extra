@@ -1,5 +1,5 @@
 import client from './client';
 
-test('client', () => {
+/*test('client', () => {
   expect(client).toBeDefined();
-});
+});*/

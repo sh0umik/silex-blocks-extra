@@ -1,6 +1,6 @@
 {
   "name": "silex-blocks-extra",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Extra Blocks For Silex V3 Editor",
   "main": "dist/server.js",
   "module": "dist/client.js",
@@ -29,6 +29,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "nodemon": "^3.0.1",
     "rollup": "^4.2.0",
     "ts-jest": "^29.1.1",

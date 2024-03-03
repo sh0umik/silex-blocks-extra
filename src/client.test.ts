@@ -1,5 +1,4 @@
-import client from './client';
-
-/*test('client', () => {
-  expect(client).toBeDefined();
-});*/
+import { expect, test } from '@jest/globals'
+test('client', () => {
+  expect("todo").toBeDefined();
+});

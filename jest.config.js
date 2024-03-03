@@ -3,11 +3,10 @@
  * https://jestjs.io/docs/configuration
  */
 
-/** @type {import('jest').Config} */
-const config = {
+module.exports = {
   transform: {
-    '^.+\\.ts?$': 'ts-jest'
+    '.*\\.ts': ['ts-jest', { tsconfig: 'tsconfig.client.json' }]
   },
-};
-
-module.exports = config;
+  testMatch: ['**/*.test.ts'],
+  testEnvironment: 'jsdom',
+}

@@ -1,10 +1,19 @@
 import blocksFlexbox from 'grapesjs-blocks-flexbox'
-import basicBloc from 'grapesjs-blocks-basic'
-//import {ClientConfig} from '@silexlabs/silex/dist/client/client'
-export default function (config) {
-  console.log('plugin init ...', { config })
-  config.grapesJsConfig.plugins.push(blocksFlexbox)
-  console.log('flex bloc loaded')
-  config.grapesJsConfig.plugins.push(basicBloc)
-  console.log('basic bloc loaded')
+import { Plugin } from '@silexlabs/silex-plugins'
+import {ClientConfig} from "@silexlabs/silex/src/ts/client/config";
+import {PluginOptions} from "./blocks/interface";
+import loadBlocks from './blocks/flexbox';
+import blocks from "./blocks";
+
+export interface BlockExtraOptions {
+  label?: string;
+}
+export default function (config : ClientConfig, options: BlockExtraOptions) {
+  console.log('plugin init client ...', { config, options })
+
+  config.addPlugin([
+    blocks as Plugin
+  ], {});
+
+  return config;
 }

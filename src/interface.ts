@@ -1,6 +1,10 @@
 import {BlockProperties} from 'grapesjs'
 
-export interface PluginOptions {
+export interface BlockExtraOptions {
+  label?: string;
+}
+
+export interface PluginOptions extends BlockExtraOptions {
   /**
    * Use this to extend the default flexbox block.
    * @default {}

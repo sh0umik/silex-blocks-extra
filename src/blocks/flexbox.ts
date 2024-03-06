@@ -1,5 +1,5 @@
 import type { Editor } from 'grapesjs'
-import {PluginOptions} from './interface'
+import {PluginOptions} from '../interface'
 
 export default (editor: Editor, opt: PluginOptions = {}) => {
   const bm = editor.BlockManager
@@ -8,6 +8,8 @@ export default (editor: Editor, opt: PluginOptions = {}) => {
   const clsCell = `${stylePrefix}cell`
   const labelRow = opt.labelRow
   const labelCell = opt.labelColumn
+
+  console.log('looking inside flexbox : ' + opt.label)
 
   const attrsToString = (attrs: Record<string, any>) => {
     const result = []

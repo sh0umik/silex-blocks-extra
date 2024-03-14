@@ -1,11 +1,11 @@
-import type { Editor, BlockProperties } from 'grapesjs';
-import {BasicBlocPluginOptions} from "../interface";
+import type { Editor, BlockProperties } from 'grapesjs'
+import {BasicBlocPluginOptions} from '../interface'
 
 export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) {
-  const bm = editor.BlockManager;
-  const { category, blocks, stylePrefix, flexGrid, rowHeight, addBasicStyle } = opts;
-  const clsRow = `${stylePrefix}row`;
-  const clsCell = `${stylePrefix}cell`;
+  const bm = editor.BlockManager
+  const { category, blocks, stylePrefix, flexGrid, rowHeight, addBasicStyle } = opts
+  const clsRow = `${stylePrefix}row`
+  const clsCell = `${stylePrefix}cell`
   const styleRow = flexGrid
     ? `
     .${clsRow} {
@@ -31,7 +31,7 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
         width: 100%;
         display: block;
       }
-    }`;
+    }`
   const styleClm = flexGrid
     ? `
     .${clsCell} {
@@ -44,19 +44,19 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
       width: 8%;
       display: table-cell;
       height: ${rowHeight}px;
-    }`;
+    }`
   const styleClm30 = `
   .${stylePrefix}cell30 {
     width: 30%;
-  }`;
+  }`
   const styleClm70 = `
   .${stylePrefix}cell70 {
     width: 70%;
-  }`;
+  }`
 
-  const step = 0.2;
-  const minDim = 1;
-  const currentUnit = 1;
+  const step = 0.2
+  const minDim = 1
+  const currentUnit = 1
   const resizerBtm: Record<string, any> = {
     tl: 0,
     tc: 0,
@@ -66,7 +66,7 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
     bl: 0,
     br: 0,
     minDim
-  };
+  }
   const resizerRight: Record<string, any> = {
     ...resizerBtm,
     cr: 1,
@@ -74,12 +74,12 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
     currentUnit,
     minDim,
     step
-  };
+  }
 
   // Flex elements do not react on width style change therefore I use
   // 'flex-basis' as keyWidth for the resizer on columns
   if (flexGrid) {
-    resizerRight.keyWidth = 'flex-basis';
+    resizerRight.keyWidth = 'flex-basis'
   }
 
   const rowAttr = {
@@ -87,49 +87,49 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
     'data-gjs-droppable': `.${clsCell}`,
     'data-gjs-resizable': resizerBtm,
     'data-gjs-name': 'Row'
-  };
+  }
 
   const colAttr: Record<string, any> = {
     class: clsCell,
     'data-gjs-draggable': `.${clsRow}`,
     'data-gjs-resizable': resizerRight,
     'data-gjs-name': 'Cell'
-  };
+  }
 
   if (flexGrid) {
-    colAttr['data-gjs-unstylable'] = ['width'];
-    colAttr['data-gjs-stylable-require'] = ['flex-basis'];
+    colAttr['data-gjs-unstylable'] = ['width']
+    colAttr['data-gjs-stylable-require'] = ['flex-basis']
   }
 
   // Make row and column classes private
-  const privateCls = [`.${clsRow}`, `.${clsCell}`];
+  const privateCls = [`.${clsRow}`, `.${clsCell}`]
   editor.on(
     'selector:add',
     selector =>
       privateCls.indexOf(selector.getFullName()) >= 0 &&
       selector.set('private', 1)
-  );
+  )
 
   const attrsToString = (attrs: Record<string, any>) => {
-    const result = [];
+    const result = []
 
-    for (let key in attrs) {
-      let value = attrs[key];
-      const toParse = value instanceof Array || value instanceof Object;
-      value = toParse ? JSON.stringify(value) : value;
-      result.push(`${key}=${toParse ? `'${value}'` : `'${value}'`}`);
+    for (const key in attrs) {
+      let value = attrs[key]
+      const toParse = value instanceof Array || value instanceof Object
+      value = toParse ? JSON.stringify(value) : value
+      result.push(`${key}=${toParse ? `'${value}'` : `'${value}'`}`)
     }
 
-    return result.length ? ` ${result.join(' ')}` : '';
-  };
+    return result.length ? ` ${result.join(' ')}` : ''
+  }
 
-  const toAdd = (name: string) => blocks.indexOf(name) >= 0;
-  const attrsRow = attrsToString(rowAttr);
-  const attrsCell = attrsToString(colAttr);
+  const toAdd = (name: string) => blocks.indexOf(name) >= 0
+  const attrsRow = attrsToString(rowAttr)
+  const attrsCell = attrsToString(colAttr)
   const commonBlockProps: Partial<BlockProperties> = {
     category,
     select: true,
-  };
+  }
 
   toAdd('column1') &&
   bm.add('column1', {
@@ -142,14 +142,14 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
         <div ${attrsCell}></div>
       </div>
       ${
-      addBasicStyle
-        ? `<style>
+  addBasicStyle
+    ? `<style>
           ${styleRow}
           ${styleClm}
         </style>`
-        : ''
-    }`
-  });
+    : ''
+}`
+  })
 
   toAdd('column2') &&
   bm.add('column2', {
@@ -163,14 +163,14 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
         <div ${attrsCell}></div>
       </div>
       ${
-      addBasicStyle
-        ? `<style>
+  addBasicStyle
+    ? `<style>
           ${styleRow}
           ${styleClm}
         </style>`
-        : ''
-    }`
-  });
+    : ''
+}`
+  })
 
   toAdd('column3') &&
   bm.add('column3', {
@@ -185,14 +185,14 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
         <div ${attrsCell}></div>
       </div>
       ${
-      addBasicStyle
-        ? `<style>
+  addBasicStyle
+    ? `<style>
           ${styleRow}
           ${styleClm}
         </style>`
-        : ''
-    }`
-  });
+    : ''
+}`
+  })
 
   toAdd('column3-7') &&
   bm.add('column3-7', {
@@ -203,23 +203,23 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
       </svg>`,
     content: `<div ${attrsRow}>
         <div ${attrsCell} style='${
-      flexGrid ? 'flex-basis' : 'width'
-    }: 30%;'></div>
+  flexGrid ? 'flex-basis' : 'width'
+}: 30%;'></div>
         <div ${attrsCell} style='${
-      flexGrid ? 'flex-basis' : 'width'
-    }: 70%;'></div>
+  flexGrid ? 'flex-basis' : 'width'
+}: 70%;'></div>
       </div>
       ${
-      addBasicStyle
-        ? `<style>
+  addBasicStyle
+    ? `<style>
           ${styleRow}
           ${styleClm}
           ${styleClm30}
           ${styleClm70}
         </style>`
-        : ''
-    }`
-  });
+    : ''
+}`
+  })
 
   toAdd('text') &&
   bm.add('text', {
@@ -234,7 +234,7 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
       content: 'Insert your text here',
       style: { padding: '10px' },
     }
-  });
+  })
 
   toAdd('link') &&
   bm.add('link', {
@@ -248,7 +248,7 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
       content: 'Link',
       style: { color: '#d983a6' }
     }
-  });
+  })
 
   toAdd('image') &&
   bm.add('image', {
@@ -262,7 +262,7 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
       style: { color: 'black' },
       type: 'image',
     }
-  });
+  })
 
   toAdd('video') &&
   bm.add('video', {
@@ -279,7 +279,7 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
         width: '615px'
       }
     }
-  });
+  })
 
   toAdd('map') &&
   bm.add('map', {
@@ -292,5 +292,5 @@ export default function(editor: Editor, opts: Required<BasicBlocPluginOptions>) 
       type: 'map',
       style: { height: '350px' }
     }
-  });
+  })
 }

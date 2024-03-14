@@ -1,6 +1,6 @@
 {
   "name": "silex-blocks-extra",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Extra Blocks For Silex V3 Editor",
   "main": "dist/server.js",
   "module": "dist/client.js",
@@ -43,6 +43,9 @@
     "@silexlabs/silex": "^3.0.0-alpha.147",
     "grapesjs": "0.21.7",
     "grapesjs-blocks-basic": "^1.0.2",
-    "grapesjs-blocks-flexbox": "^1.0.1"
+    "grapesjs-blocks-flexbox": "^1.0.1",
+    "grapesjs-plugin-forms": "^2.0.6",
+    "grapesjs-tailwind": "^1.0.11",
+    "node_modules-path": "^2.0.7"
   }
 }

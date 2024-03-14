@@ -1,15 +1,13 @@
 import type { Editor } from 'grapesjs'
-import {PluginOptions} from '../interface'
+import {FlexBoxPluginOptions} from '../interface'
 
-export default (editor: Editor, opt: PluginOptions = {}) => {
+export default (editor: Editor, opt: FlexBoxPluginOptions = {}) => {
   const bm = editor.BlockManager
   const stylePrefix = opt.stylePrefix
   const clsRow = `${stylePrefix}row`
   const clsCell = `${stylePrefix}cell`
   const labelRow = opt.labelRow
   const labelCell = opt.labelColumn
-
-  console.log('looking inside flexbox : ' + opt.label)
 
   const attrsToString = (attrs: Record<string, any>) => {
     const result = []

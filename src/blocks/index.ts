@@ -15,7 +15,13 @@ export default function (config : ClientConfig, options: FlexBoxPluginOptions) {
     loadFlexBlocks(editor, _options)
 
     //inject CDN
-    //console.log('canvas scripts ->', editor.Canvas.getModel())
+    console.log('inject tailwind cdn from plugin scripts index.ts ->', editor.Canvas.getModel())
+    config.grapesJsConfig = {
+      ...config.grapesJsConfig,
+      canvas: {
+        scripts: ['https://cdn.tailwindcss.com'],
+      }
+    }
     //editor.Canvas.getModel().defaults().scripts.push('https://cdn.tailwindcss.com')
 
 

@@ -14,6 +14,15 @@ export default function (config : ClientConfig, options: SilexExtraBlocPluginOpt
   console.log('init tailwind', {config, options})
   config.grapesJsConfig.plugins.push(tailwindCss)
 
+  console.log('inject tailwind cdn from plugin scripts client.ts ->', config.grapesJsConfig)
+  config.grapesJsConfig = {
+    ...config.grapesJsConfig,
+    canvas: {
+      scripts: ['https://cdn.tailwindcss.com'],
+    }
+  }
+  console.log(config.grapesJsConfig)
+
   console.log('passing label check : ' + options.label)
   config.addPlugin([
     blocks as Plugin
